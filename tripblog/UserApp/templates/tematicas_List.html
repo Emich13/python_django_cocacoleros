@@ -1,0 +1,26 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+<h2>Lista de tematicas disponibles: </h2>
+<ul>
+    {% if user.is_authenticated %}
+    {% for tematica in object_list  %}
+        <a href="{% url 'postRelacionados' tematica.pk %}" ><li>{{tematica.nombre}}</li></a>
+        <a class="btn btn-secondary" href="{% url 'tematicasDelete' tematica.id %}">Eliminar</a>
+        <a class="btn btn-secondary" href="{% url 'editarTematicas' tematica.id %}">Editar</a>
+        <a class="btn btn-secondary" href="{% url 'tematicasDetail' tematica.id %}">Detalle</a>
+
+    {% endfor %}
+    <a class="navbar-brand" href="{% url 'crearTematica' %}">Crear tematica</a>
+    {% else %}
+        <div style="margin: 15px;">
+            <p>Debes iniciar sesion para revisar las Tematicas</p>
+            <a class="btn btn-secondary" href="{% url 'inicioSesion'%}">Iniciar sesion</a>
+        </div>
+        
+        {% endif %} 
+   
+</ul>
+
+{% endblock ContenidoQueCambia %}
+    

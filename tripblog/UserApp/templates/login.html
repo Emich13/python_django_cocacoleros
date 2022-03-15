@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio sesión</title>
+</head>
+<body>
+   
+    <h2>Login:</h2>
+    {% if not request.user.is_authenticated  %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <a href="{% url 'inicio' %}"> <button type="submit" class="btn btn-secondary" >Iniciar sesión</button> </a>
+    </form>
+    {% else %}
+    {% endif %}
+    <h3>¿No estas registrado?</h3>
+    <a class="navbar-brand" href="{% url 'registro' %}">Registrate!</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar</title>
+</head>
+<body>
+    <p>Resultados de la busqueda</p>
+    
+    
+    {% if tematicas %}
+    <ul>
+        
+        {% for nombre in tematicas  %}
+            <li>{{nombre.nombre}} </li>
+            
+        {% endfor %}
+            
+    </ul>
+        
+ 
+    {% else %}
+        <p>No enviaste nada</p>    
+    {% endif %}
+   
+        
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% extends 'padre.html' %}
+{% load static %}
+
+{% block ContenidoQueCambia %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- CONTENIDO POST-->
+            <article>
+                <header class="mb-4">
+                    <h1 class="fw-bolder mb-1">Posteos</h1>
+                    <a class="btn btn-secondary" href= "{% url 'crearPost' %}">Crear post</a>
+                    <h2>{{post.titulo}} <a href="{% url 'Postfavoritos' post.pk %}" ><span ><i class="fa-solid fas fa-bookmark"></i></span> </a> </h2>
+                    {% if post.posteador == request.user%}
+                        <p class="post-meta">Escrito por <a href="{% url 'Perfil'%}" > {{post.posteador}} </a></p> <!-- un if para ver si yo soy el posteador -->
+
+                    {%else%}
+                        <p class="post-meta">Escrito por <a href="{% url 'otroPerfil' post.posteador.pk %}" > {{post.posteador}} </a></p> <!-- un if para ver si yo soy el posteador -->
+
+                    {%endif%}
+                    <div class="text-muted fst-italic mb-2">{{post.fecha_publicacion}}</div>
+                    
+                    <!-- {% if tematicas %}
+                        
+                        {% for tematica_post in tematicas  %}
+                        <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'tematicasList' %}">{{tematica_post.nombre}}</a>
+                        {% endfor %}
+                    {% else %}
+
+                        <p>No recibo la lista tematicas :(</p>
+    
+                    {% endif %} -->
+                    <a class="text-muted" href="{% url 'Likes' post.pk %}" >
+                        <i class="fas fa-thumbs-up fa-lg"></i>
+                        {{post.get_like_count}}
+                    </a>
+                    
+
+                    {% if post.imagenPost %}
+                    <figure class="mb-4"><img class="img-fluid rounded" src={{post.imagenPost.url}} onerror="this.onerror=null ;this.remove();"  alt="..." /></figure>
+
+                        
+                    {% endif %}
+                    </header>
+                <div class="container">
+                    <p>{{post.contenido}}</p>
+                </div>
+                <section class="mb-5">
+                    
+                </section>
+            </article>
+            
+                        <form  method="POST" class="post-form">
+                            {% csrf_token %}
+                            {{miFormComentario.as_p}}
+                            
+                            <button type="submit" style=margin:10px; class="save btn btn-secondary">Agregar comentario</button>
+
+                        </form> 
+                       
+                            
+                            
+                            
+                            {% if comentario %}
+                                {% for comentario_post in comentario  %}
+                                <div class="d-flex mb-4">
+                               
+                                <div class="flex-shrink-0"><img class="rounded-circle" src= {{comentario_post.comentarista.perfil.imagenPerfil.url}} height="50px" width="50px"  alt="..."></div> 
+                                    
+                                <div class="ms-3">
+                                    {% if comentario_post.comentarista == request.user%}
+                                        
+                                        <div class="fw-bold"><a href="{% url 'Perfil'%}">{{comentario_post.comentarista}}</a></div> 
+
+                                    {%else%}
+                                        <div class="fw-bold"><a href="{% url 'otroPerfil' comentario_post.comentarista.pk %}">{{comentario_post.comentarista}}</a></div> 
+
+                                    {%endif%}
+                                    
+                                    <div class="text-muted fst-italic mb-2">{{comentario_post.fecha}}</div>
+                                    <p>{{comentario_post.contenido_comentario}} </p>
+                                    
+                                    <div class="col-lg-12" style="margin-top: 10px">
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                            
+                            {% endif %}
+                                
+                            
+                        
+                        
+                    
+                </div>
+            </section>
+        
+       
+        <!--SLIDE WIDGETS-->
+        <!-- <div class="card mb-4">
+            <div class="card-header">Tematicas</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {% if tematicas %}
+                        {% for tematica in lista %}
+                        <div class="col-sm-6">
+
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="{% url 'postRelacionados' tematica.pk %}" >{{tematica.nombre}}</a></li>
+
+                            </ul>
+                        </div>
+                  
+
+                        
+                        {% endfor %}
+                        {% else %}
+                        <p>no recibis lista</p>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div> -->
+        
+    </div>
+</div>
+    </div>
+</div>
+
+{% endblock ContenidoQueCambia %}
+    
+

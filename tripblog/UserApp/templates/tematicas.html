@@ -1,0 +1,17 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+<h2>Lista de tematicas disponibles: </h2>
+<ul>
+    
+    {% for tematica in listaTematicas  %}
+        <a href="#!"><li>{{tematica.nombre}}</li></a>
+        
+
+    {% endfor %}
+    <a class="navbar-brand" href="{% url 'crearTematica' %}">Crear tematica</a>
+   
+</ul>
+
+{% endblock ContenidoQueCambia %}
+    

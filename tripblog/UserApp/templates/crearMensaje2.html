@@ -1,0 +1,19 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+    <div class="container">
+        <h2>Escribe tu mensaje!</h2>
+            
+            <form id="post-form" method="POST" action="crearMensaje2">
+                {% csrf_token %}
+                <label>Username: </label>
+                <input type="text" name="destinatario" id="destinatario" width="100px" >
+                <label>Mensaje</label>
+                <textarea name="mensaje" id="email_message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>
+                <input type="submit" value="Enviar mensaje">
+            </form>
+        </form>
+    </div>
+
+{% endblock ContenidoQueCambia %}
+    

@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+<h2>Posteos relacionados con la tematica: </h2>
+{%if postRelacionados%}
+    {% for post in postRelacionados  %}
+       <p><a href="{% url 'Posteos' post.pk %}" >{{post.titulo}}</a></p> 
+    {% endfor %}
+{%else%}
+    <h2>No se encontraron posts relacionados a la tematica solicitada :(, <a href="{%url 'crearPost'%}">publique</a> su propio post!</h2>
+{%endif%}
+{% endblock ContenidoQueCambia %}
+    

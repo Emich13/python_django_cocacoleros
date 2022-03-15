@@ -1,0 +1,41 @@
+{% extends 'mensajesDirectos.html' %}
+{%load static%}
+
+{%block contenidoMensajesEspecificos%}
+<div class="table-responsive">
+		{%if mensajeEsp%}
+		
+				<td class="action"><i class="fa fa-star-o"></i></td>
+				<td class="action"><i class="fa fa-bookmark-o"></i></td>
+				{% if request.user == mensajeEsp.destinatario%}
+					<td class="name"><a href="{% url 'otroPerfil' mensajeEsp.user.pk%}">De: {{mensajeEsp.user}} | email: {{mensajeEsp.user.email}}</a></td> 
+					<td class="name"><a href="{% url 'Perfil'%}">Para: {{mensajeEsp.destinatario}}</a></td>
+				{% else%}
+					<td class="name"><a href="{% url 'Perfil'%}">De: {{mensajeEsp.user}} | email: {{mensajeEsp.user.email}}</a></td> 
+					<td class="name"><a href="{% url 'otroPerfil' mensajeEsp.destinatario.pk%}">Para: {{mensajeEsp.destinatario}}</a></td>
+				{% endif %}
+				
+				<p>{{mensajeEsp.mensaje}}</p> 
+				<td class="time">{{m.fechaMensaje}}</td>
+				
+				
+			
+		{%endif%}
+	
+
+		<a class="btn btn-secondary" href="{% url 'eliminarMensaje' mensajeEsp.id %}">Eliminar</a>
+		{%if request.user == mensajeEsp.user%}
+
+		{% else %}
+		<a class="btn btn-secondary" href="{% url 'enviarMensaje' mensajeEsp.user.pk %}">Responder</a>
+
+		{%endif%}
+		
+</div>
+	
+
+
+{%endblock contenidoMensajesEspecificos%}
+                            
+
+						

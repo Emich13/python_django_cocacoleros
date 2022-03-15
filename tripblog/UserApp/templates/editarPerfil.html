@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+    <h2>Editar perfil</h2>
+    <form action="" method="POST" enctype="multipart/form-data" >
+
+        {% csrf_token %}
+        <p>Hola {{usuario}}!, aqui puedes editar tu perfil</p>
+        {{miForm.as_p}}
+        {{miPerfil.as_p}}
+        <button type="submit" href="{% url 'inicio' %}"  class="btn btn-secondary" id="enviado">Actualizar</button>
+    </form> 
+    
+<div class="modal fade" id="usercreado" role="dialog">
+
+
+</div>
+
+
+{% endblock ContenidoQueCambia %}
+
+      

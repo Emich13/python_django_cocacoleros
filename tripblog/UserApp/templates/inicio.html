@@ -1,0 +1,116 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Bienvenidos a Tripblog!</h1>
+        </div>
+    </div>
+</header>
+<!-- Page content-->
+<div class="container">
+    <!-- <div class="row infinite-container"> -->
+    <!-- Blog entries-->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                
+                <div class="card-body">
+
+                    {% if post %}
+
+                    {% for posteo in posteos %}
+                   
+
+                    {% if posteo.imagenPost %}
+                        <a href="{% url 'Posteos' posteo.pk %}"><img class="card-img-top" src={{posteo.imagenPost.url}} onerror="this.onerror=null ;this.remove();" alt="..." /></a>
+                    
+                    {% endif %}
+
+
+                    <h2 class="card-title">{{posteo.titulo}}</h2>
+                    <h3 class="card-subtitle">{{posteo.subtitulo}}</h3>
+                    <p class="post-meta">Escrito por {{posteo.posteador}}</p>
+
+                    <div class="small text-muted">{{posteo.fecha_publicacion}}</div>
+                    <p>
+                        <span><i class="fas fa-thumbs-up"></i>{{posteo.get_like_count}}</span>
+                        <span><i class="fas fa-comments"></i>{{posteo.get_comment_count}}</span>
+
+                        {% for i in posteo.get_tematica %}
+                        <a class="badge bg-secondary text-decoration-none link-light"
+                            href="{% url 'tematicasList' %}">{{i}}</a>
+                        {% endfor %}
+                    </p>
+                    <p class="card-text">{{posteo.contenido}}</p>
+                    <a class="btn btn-secondary" style= margin:10px; href="{% url 'Posteos' posteo.pk %}">Leer más →</a>
+                    {% endfor %}
+                    {% else %}
+                    <h2>Error, no se cargaron post</h2>
+                    {% endif %}
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                
+                <!--SLIDE WIDGETS-->
+                <div class="card mb-4">
+                    <div class="card-header">Tematicas</div>
+                    <div class="card-body">
+                        <div class="row">
+                            
+                                
+                                {% if lista %}
+                                {% for tematica in lista %}
+                                <div class="col-sm-6">
+                                    <div class="col-sm-6">
+
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="{% url 'postRelacionados' tematica.pk %}" >{{tematica.nombre}}</a></li>
+                                        
+                                        
+                                    </ul>
+                                     </div>
+                                </div>
+
+
+                                
+                                {% endfor %}
+                                {% else %}
+                                <p>no recibis lista</p>
+                                {% endif %}
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        {% if posteos.has_next %}
+        <a class="infinite-more-link" href="?page={{ posteos.next_page_number }}">More</a>
+        {% endif %}
+        
+    </div>
+    <script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+            handler: function (direction) {
+
+            },
+            offset: 'bottom-in-view',
+
+            onBeforePageLoad: function () {
+                $('.spinner-border').show();
+            },
+            onAfterPageLoad: function () {
+                $('.spinner-border').hide();
+            }
+        });
+
+    </script>
+    {% endblock ContenidoQueCambia %}

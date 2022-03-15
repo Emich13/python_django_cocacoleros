@@ -1,0 +1,39 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block ContenidoQueCambia %}
+<head>
+    <title>Mis posts</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'UserApp/css/styleProfile.css'%}">
+</head>
+   
+
+    <div class="container">
+        {% for p in posts %}
+        <div class="row">
+            <div class="col-lg-6" style="margin: 10px;">
+                <div id="posteos">
+                <!-- Blog post-->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4"><a href="{% url 'Posteos' p.id%}">Titulo: {{p.titulo}}</a></h2>
+                        <p class="text-muted fst-italic mb-2">Fecha Publicación: {{p.fecha_publicacion}}</p>
+                        <p class="card-text">Imagen: {{p.imagenPost}}</p>
+                        <a class="btn btn-secondary" href="{% url 'eliminaPost' p.id %}">Eliminar</a>
+                        <a class="btn btn-secondary" href="{% url 'actualizaPost' p.id %}">Editar</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div>
+            <div class="row">
+                <div class="col-lg-6" style="margin-top: 10px">
+                    <a class="btn btn-secondary" href="{% url 'inicio' %}">Volver a Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock ContenidoQueCambia %}

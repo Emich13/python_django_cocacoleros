@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Post</title>
+</head>
+<body>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- CONTENIDO POST-->
+                <article>
+                    <!-- Post header-->
+                    <header class="mb-4">
+                        <!-- Post titulo-->
+                        <p>
+                            <a href="{% url 'listaPost' %}">Regresar</a>
+                        </p>
+                        <h1 class="fw-bolder mb-1">Posteos</h1>
+                        <!-- Post meta content-->
+    
+                        <h1>{{post.titulo}}</h1>
+                        <div class="text-muted fst-italic mb-2">{{post.fecha_publicacion}}</div>
+                        <!-- Post categories-->
+                        
+                        {% if tematicas %}
+                            
+                            {% for tematica_post in tematicas  %}
+                            <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'tematicas' %}">{{tematica_post.nombre}}</a>
+                            {% endfor %}
+                        {% else %}
+                            <p>No recibo la lista tematicas :(</p>
+        
+                        {% endif %}
+                        <p>{{post.contenido}}</p>
+    
+                            
+                        </header>
+                    <!-- Preview image figure-->
+                    <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        
+                        <!-- seccion donde iria el contenido del post que presioné-->
+                    </section>
+                </article>
+                
+                            <form  method="POST" class="post-form">
+                                {% csrf_token %}
+                                {{miFormComentario.as_p}}
+                                
+                                <button type="submit" class="save btn btn-secondary">Agregar comentario</button>
+    
+                            </form> 
+                            
+                                
+                                
+                                {% if comentario %}
+                                    {% for comentario_post in comentario  %}
+                                    <div class="d-flex mb-4">
+    
+                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> <!--Acá deberia aparecer la imagen que el usuario elija...-->    
+                                    <div class="ms-3">
+                                        <div class="fw-bold">{{comentario_post.comentarista}}</div>
+                                        
+                                        <p>{{comentario_post.contenido_comentario}} </p>
+                                      
+                                    </div>
+                                </div>
+                                    {% endfor %}
+                                
+                                {% endif %}
+                                    
+                        
+                    </div>
+                </section>
+            
+            <!-- Side widgets-->
+           <div class="col-lg-4">
+                <!-- Search widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                            <button class="btn btn-secondary" id="button-search" type="button">Go!</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Tematicas</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">Web Design</a></li>
+                                    <li><a href="#!">HTML</a></li>
+                                    <li><a href="#!">Freebies</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">JavaScript</a></li>
+                                    <li><a href="#!">CSS</a></li>
+                                    <li><a href="#!">Tutorials</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Side Widget</div>
+                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+
+ 

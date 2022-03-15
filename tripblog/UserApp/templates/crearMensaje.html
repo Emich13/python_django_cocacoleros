@@ -1,0 +1,15 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+    <div class="container">
+        <h2>Escribe tu mensaje</h2>
+        <p>Para: {{destinatario}}</p>
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{miForm.as_p}}
+            <button type="submit" class="btn btn-secondary">Enviar</button>
+        </form>
+    </div>
+
+{% endblock ContenidoQueCambia %}
+    

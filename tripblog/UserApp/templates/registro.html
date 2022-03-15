@@ -1,0 +1,30 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+    <h2>Registrese</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" href="{% url 'registro' %}" class="btn btn-secondary" id="enviado">Registrarse</button>
+    </form>
+    
+<div class="modal fade" id="usercreado" role="dialog">
+
+
+</div>
+
+
+{% endblock ContenidoQueCambia %}
+
+      
+{% block extraJS %}
+   <script type="text/javascript">
+       var $= jQuery.noConflict();
+       function abrir_modal(url){
+           $('#usercreado').load(url,function(){
+               $(this).modal('show');
+           })
+       }
+   </script>         
+{% endblock extraJS %}
+    

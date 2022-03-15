@@ -1,0 +1,33 @@
+{% extends 'padre.html' %}
+{%load static%}
+{% block ContenidoQueCambia %}
+<h1>Formulario - Editar Comentario</h1>
+    
+{% if miFormulario.errors %}
+
+<p> Están mal los datos, revisar</p>
+
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+    
+    <table>
+
+        {{ miFormulario.as_p }}
+
+
+    </table>
+
+    <input type="submit", value="Actualizar">
+
+</form>
+
+<div class="col-lg-6" style="margin-top: 35px">
+    <a class="btn btn-secondary" href= "{% url 'comentarios' %}">Volver a mis Comentarios</a>
+</div>
+<div class="col-lg-6" style="margin-top: 35px">
+    <a class="btn btn-secondary" href= "{% url 'inicio' %}">Volver Inicio</a>
+</div>
+
+
+{% endblock ContenidoQueCambia %}

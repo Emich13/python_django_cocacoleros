@@ -1,0 +1,51 @@
+div#contenedor{
+    margin:auto;
+    margin-top:50px; 
+    margin-block-end: 50px;
+    width: 1500px;
+    height: 2000px;
+    background-color: white;
+}
+div#posteos{
+    float:left;
+    height: auto;
+    width: 900px;
+    background-color: transparent;
+}
+div#profile{
+    border-color : rgb(117, 116, 116); 	
+    border-style: solid;
+    border-width: 2px;
+    float:right;
+    width: 400px;
+    height: auto;
+    background-color: transparent;
+}
+div#barraPerfil{
+    width: 500px;
+    margin-block-end: 50px;
+    /* background-color: 33, 37, 41; */
+}
+li {
+    display: inline;
+    
+
+    
+}
+ul#menuPerfil{
+    list-style-type: none;
+    background-color: black;
+    height: 30px;
+    width: 545px;
+
+}
+li a {
+    /* display: block; */
+    color: white;
+    text-align: center;
+    padding: 1px 10px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+}

@@ -1,0 +1,20 @@
+{% extends 'mensajesDirectos.html' %}
+{%load static%}
+{% block contenidoEnviados %}
+        <div class="table-responsive">
+            <table class="table">
+                {%for m in mensajes %}
+
+                <tbody>
+                
+                    <tr>
+                       
+                        <td class="name"><a href="{% url 'otroPerfil' m.destinatario.pk%}">enviaste a: {{m.destinatario}}</a></td> <!--visitar perfil-->
+                        <td class="subject"><a href="{% url 'verMensajeEspecifico' m.pk%}">{{m.mensaje}}</a></td> <!--ver mensaje especifico-->
+                        <td class="time">{{m.fechaMensaje}}</td>
+                    </tr>
+                    {%endfor%}
+
+            </tbody></table>
+        </div>
+{% endblock contenidoEnviados %}
