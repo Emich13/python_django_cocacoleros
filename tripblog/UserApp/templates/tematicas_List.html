@@ -1,26 +1,40 @@
 {% extends 'padre.html' %}
 {%load static%}
 {% block ContenidoQueCambia %}
-<h2>Lista de tematicas disponibles: </h2>
-<ul>
-    {% if user.is_authenticated %}
-    {% for tematica in object_list  %}
-        <a href="{% url 'postRelacionados' tematica.pk %}" ><li>{{tematica.nombre}}</li></a>
-        <a class="btn btn-secondary" href="{% url 'tematicasDelete' tematica.id %}">Eliminar</a>
-        <a class="btn btn-secondary" href="{% url 'editarTematicas' tematica.id %}">Editar</a>
-        <a class="btn btn-secondary" href="{% url 'tematicasDetail' tematica.id %}">Detalle</a>
 
+
+
+{% if user.is_authenticated %}
+  <table class="table">
+    <thead>
+        <tr>
+          <th scope="col">Tematica</th>
+          <th scope="col">Eliminar</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for tematica in object_list  %}
+    <tr>
+        <td><a href="{% url 'postRelacionados' tematica.pk %}"><li style="list-style-type:none;">{{tematica.nombre}}</li></a></td>
+        <td><a class="btn btn-secondary" href="{% url 'tematicasDelete' tematica.id %}">Eliminar</a></td>
+        <td><a class="btn btn-secondary" href="{% url 'editarTematicas' tematica.id %}">Editar</a></td>
+        <td><a class="btn btn-secondary" href="{% url 'tematicasDetail' tematica.id %}">Detalle</a></td>
+    </tr>
+    </tbody>
     {% endfor %}
-    <a class="navbar-brand" href="{% url 'crearTematica' %}">Crear tematica</a>
+</table>
+    <a  class="link-success" href="{% url 'crearTematica' %}">Crear tematica</a>
+
     {% else %}
         <div style="margin: 15px;">
             <p>Debes iniciar sesion para revisar las Tematicas</p>
-            <a class="btn btn-secondary" href="{% url 'inicioSesion'%}">Iniciar sesion</a>
+            <a class="btn btn-primary" href="{% url 'inicioSesion'%}">Iniciar sesion</a>
         </div>
         
-        {% endif %} 
+    {% endif %} 
    
-</ul>
 
 {% endblock ContenidoQueCambia %}
     

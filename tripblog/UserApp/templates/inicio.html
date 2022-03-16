@@ -4,8 +4,9 @@
 <!-- Page header with logo and tagline-->
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
-        <div class="text-center my-5">
+        <div class="text-center my-5 bg-gradient-secondary">
             <h1 class="fw-bolder">Bienvenidos a Tripblog!</h1>
+            <h2 class="fw-bolder">El blog de los viajeros</h2>
         </div>
     </div>
 </header>
@@ -69,8 +70,8 @@
                                 <div class="col-sm-6">
                                     <div class="col-sm-6">
 
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="{% url 'postRelacionados' tematica.pk %}" >{{tematica.nombre}}</a></li>
+                                    <ul class="list-group">
+                                        <li class="list-group-item "><a class="list-group-item list-group-item-action text-light bg-dark" href="{% url 'postRelacionados' tematica.pk %}" >{{tematica.nombre}}</a></li>
                                         
                                         
                                     </ul>

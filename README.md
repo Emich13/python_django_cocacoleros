@@ -1,6 +1,3 @@
-## Video Resumen: 
-:tv: [link video]()
-
  ## Nuestro Equipo 
 
 :point_right: **Emilio Chiaramonte:**
